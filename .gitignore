@@ -1,0 +1,14 @@
+# Ignorar ambiente virtual (venv)
+venv/
+
+# Ignorar arquivos de ambiente virtual do Windows
+pyvenv.cfg
+Scripts/
+
+# Ignorar arquivos de ambiente virtual do Unix/Mac
+pyvenv.cfg
+bin/
+include/
+lib/
+lib64/
+pyvenv.cfg
