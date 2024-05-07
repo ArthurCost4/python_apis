@@ -62,6 +62,26 @@ with Session(engine) as session:
     alice_in_chains = Client(name='alice', cpf='2342542', endereco='pentecostal rua major de alfrredo, 456')
     session.add_all([zezim, seila, alice_in_chains])
     session.commit()
+    
+PERSISTINDO NA CONTA
+
+with Session(engine) as session:
+    conta_teste = Conta(
+        tipo='corrente',
+        agencia='roxin-03',
+        num='246911',
+        saldo=1000,
+        id_client=3,
+    )
+    outro_teste = Conta(
+        tipo='poupanca',
+        agencia='laranja-01',
+        num='24341',
+        saldo=2000,
+        id_client=1,
+    )
+    session.add_all([conta, outro_teste])
+    session.commit()
 '''
 
 session = Session(engine)
@@ -69,3 +89,11 @@ session = Session(engine)
 stmt = select(Client).where(Client.name.in_(['zezim do balacobaco', 'alice']))
 for user in session.scalars(stmt):
     print(user)
+
+result = session.execute(select(Conta).order_by(Conta.id))
+print(result.fetchone())
+
+# Verificando a tabela de contas
+stmt_conta = select(Conta).where(Conta.id_client.in_([1,3]))
+for account in session.scalars(stmt_conta):
+    print(account)
